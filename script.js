@@ -69,16 +69,16 @@ file.addEventListener('change', function(){
 });
 
 function drawVisualiser(bufferLength, x, barWidth, barHeight, dataArray){
-    for (let i = 0; i < bufferLength; i++){
+  shiftColor++;
+  if (shiftColor > 360)
+  {
+    shiftColor=0;
+  }
+  for (let i = 0; i < bufferLength; i++){
         barHeight = dataArray[i] * 1.2;
         ctx.save();
         ctx.translate(canvas.width/2, canvas.height/2);
         ctx.rotate(i * Math.PI * 4/ bufferLength);
-        shiftColor++;
-        if (shiftColor > 360)
-        {
-          shiftColor=0;
-        }
         const hue = 240 + i * 1.5 + shiftColor;
         ctx.lineWidth = barHeight/10;
         ctx.strokeStyle = 'hsl(' + hue + ',100%, 50%)';
